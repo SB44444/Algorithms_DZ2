@@ -1,0 +1,72 @@
+// Урок 3. Структуры данных. Связный список.
+
+// https://github.com/SB44444/Algorithms_DZ2.git
+
+// Задание 1. Реализовать метод разворота связного списка (двухсвязного или односвязного на выбор).
+// Задание 2.(Необязательное)* Вывести n-е число с конца односвязного списка, предварительно не узнавая его размер : )
+ 
+ 
+  /**
+     * Метод разворота односвязного списка
+     */
+
+ public void reverseLinkedList() {
+        if (!(head != null || head.next != null)) { // Если список пустой или состоит из одного эл-та
+            return;  // Возвращаем список
+        }  // Иначе
+        LinkedList.Node currentNode  = head; // Принимаем как голову значение текущей ноды
+        LinkedList.Node previous = null;  // Предыдущую ноду отсылаем на null
+
+        while (currentNode != null) { // Пока в списке эл-ты имеют значения не null, т.е. не дошли до крайнего
+            LinkedList.Node next = currentNode.next; // Значению следующей ноды присвоить значение текущей ссылки
+            currentNode.next = previous; // Значению текущей ссылки присвоить значение предыдущей ноды
+            previous = currentNode;  // Значению предыдущей ноды присвоить значение текущей
+            currentNode = next; // Текущую ноду объявить следующей
+        }
+        head = previous; // Последнее значение объявить головй
+    }
+
+  /**
+     * Метод поиска n эл-та от края списка
+     */
+
+
+    public void nToEndLinkedList(int n) {
+         if (head == null) {  // Если список пустой
+             return; // Выход из программы
+        }
+        LinkedList.Node firstNode  = head; // Принимаем как голову значение текущей ноды
+        LinkedList.Node secondNode  = head; // Принимаем как голову значение текущей ноды
+
+        for (int i = 0; i < n; ++i) {  // Идем второй переменной по списку n раз
+            if (firstNode == null) { // Если дошли до края, но не прошли n шагов
+                System.out.println("Номер в списке отсутствует");
+            }
+            secondNode = secondNode.next;  // Перебираем по одному эл-ту
+        }
+        while (secondNode != null) { // Пока не дошли до края
+            firstNode = firstNode.next; // Присваиваем каждому эл-ту следующее значение
+            secondNode = secondNode.next;
+        }
+        System.out.println(firstNode); // Выводим значение n эл-та от конца списка
+    }
+
+  /**
+     * Метод разворота двусвязного списка
+     */
+
+    public void reverseDoubleList() {
+        if (!(head != null || head.next != null)) { // Если список пустой или состоит из одного эл-та
+            return;  // Возвращаем список
+        }  // Иначе
+        Node currentNode  = head; // Принимаем как голову значение текущей ноды
+        Node previous = null;  // Предыдущую ноду отсылаем на null
+
+        while (currentNode != null) { // Пока в списке эл-ты имеют значения не null, т.е. не дошли до крайнего
+            Node next = currentNode.next; // Значению следующей ноды присвоить значение текущей ссылки
+            currentNode.next = previous; // Значению текущей ссылки присвоить значение предыдущей ноды
+            previous = currentNode;  // Значению предыдущей ноды присвоить значение текущей
+            currentNode = next; // Текущую ноду объявить следующей
+        }
+        head = previous; // Последнее значение объявить головй
+    }
